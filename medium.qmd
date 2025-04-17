@@ -1,0 +1,16 @@
+---
+title: "Medium exercises"
+author: "Nina Norgren"
+date: today
+---
+
+## Find allele frequency in VCF file
+
+::: {.callout-note}
+### Information
+
+**Level:** Intermediate  
+**External libraries:** None  
+**Time:** Medium
+:::
+

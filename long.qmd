@@ -1,0 +1,18 @@
+---
+title: "Long exercises"
+author: "Nina Norgren"
+date: today
+---
+
+## Find affected individuals
+
+::: {.callout-note}
+### Information
+
+**Level:** Intermediate  
+**External libraries:** None  
+**Time:** Long
+:::
+
+
+## Snakemake workflow

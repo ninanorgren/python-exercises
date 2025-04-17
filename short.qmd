@@ -1,0 +1,111 @@
+---
+title: "Short exercises"
+author: "Nina Norgren"
+date: today
+---
+
+## Reverse complement DNA
+
+::: {.callout-note}
+### Information
+
+**Level:** Easy  
+**External libraries:** None  
+**Time:** Short
+
+:::
+
+Reverse complementing a DNA sequence can for example be used to create sequences that interact with each other, for example in a PCR reaction. When reverse complementing, the sequence is first reversed, and then each base is exchanged with its complement:
+
+A -> T  
+T -> A  
+G -> C   
+C -> G  
+
+For example: ATGTCGC becomes GCGACAT
+
+**Exercise:**  
+Given the DNA sequence below, write Python code to reverse complement it.
+
+::: {.callout}
+### Input data 
+
+ATGGTCGAATGCGGTAACCGTAAATTGCGATCGCGCTAGGCCTAAACGTT
+
+:::
+
+
+## Translate RNA to protein
+
+::: {.callout-note}
+### Information
+
+**Level:** Easy  
+**External libraries:** None  
+**Time:** Short
+
+:::
+
+Translation is the process of converting RNA sequences into protein sequences. Each group of three RNA bases (codon) corresponds to a specific amino acid. Below is the RNA codon table:
+
+::: {.callout-caution collapse="true"}
+### Codon table
+
+|          |          |           |          |
+|----------|----------|-----------|----------|
+| UUU: F    |   CUU: L  |    AUU: I  |    GUU: V |
+| UUC: F    |   CUC: L  |    AUC: I  |    GUC: V |
+| UUA: L    |   CUA: L  |    AUA: I  |    GUA: V |
+| UUG: L    |   CUG: L  |    AUG: M  |    GUG: V |
+| UCU: S    |   CCU: P  |    ACU: T  |    GCU: A |
+| UCC: S    |   CCC: P  |    ACC: T  |    GCC: A |
+| UCA: S    |   CCA: P  |    ACA: T  |    GCA: A |
+| UCG: S    |   CCG: P  |    ACG: T  |    GCG: A |
+| UAU: Y    |   CAU: H  |    AAU: N  |    GAU: D |
+| UAC: Y    |   CAC: H  |    AAC: N  |    GAC: D |
+| UAA: Stop |   CAA: Q  |    AAA: K  |    GAA: E |
+| UAG: Stop |   CAG: Q  |    AAG: K  |    GAG: E |
+| UGU: C    |   CGU: R  |    AGU: S  |    GGU: G |
+| UGC: C    |   CGC: R  |    AGC: S  |    GGC: G |
+| UGA: Stop |   CGA: R  |    AGA: R  |    GGA: G |
+| UGG: W    |   CGG: R  |    AGG: R  |    GGG: G |
+
+:::
+
+For example: AUGGCCAUGAAGGGC translates to MAMKG
+
+**Exercise:** Given the RNA seuence below, write Python code to translate it to an amino acid sequence.
+
+::: {.callout}
+### Input data 
+
+AUGAAACAUUCAUUGGGCAGAAGGCGGGCAGAGAUACCCCCUUCGCUUAGGGGGGCAUAUUUUUGG
+
+:::
+
+
+## Find motifs in DNA
+
+::: {.callout-note}
+### Information
+
+**Level:** Intermediate  
+**External libraries:** None  
+**Time:** Short
+:::
+
+Finding motifs in DNA is a common process in bioinformatics, one example could be to find binding sites for transcription factors. 
+
+For example: ATCCT is a substring of CGATCCTGTCATCCTTCG starting in two different positions: 2 and 10.
+
+**Exercise:** Given the DNA sequence and the query string below, in what starting positions is the query string a substring of the DNA sequence?
+
+::: {.callout}
+### Input data 
+
+DNA sequence:   
+CTGAGCCTGGACGCCTGAGCTACGCCTTGCGAAACGCGTTCGCCTGGCTAACCGCGCCTA
+query string:  
+GCCT
+
+:::
