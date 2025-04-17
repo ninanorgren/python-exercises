@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Overview",
+    "section": "",
+    "text": "This site contains different Python exercises that can be incorporated in teaching Python to biologists. The exercises have different difficulty levels and approaches."
+  },
+  {
+    "objectID": "index.html#content-description",
+    "href": "index.html#content-description",
+    "title": "Overview",
+    "section": "",
+    "text": "This site contains different Python exercises that can be incorporated in teaching Python to biologists. The exercises have different difficulty levels and approaches."
+  },
+  {
+    "objectID": "index.html#target-audience",
+    "href": "index.html#target-audience",
+    "title": "Overview",
+    "section": "Target audience",
+    "text": "Target audience\nThese exercises are intended for trainers that teach Python, to freely incorporate in their own teachings."
+  },
+  {
+    "objectID": "short.html",
+    "href": "short.html",
+    "title": "Short exercises",
+    "section": "",
+    "text": "Information\n\n\n\nLevel: Easy\nExternal libraries: None\nTime: Short\n\n\nReverse complementing a DNA sequence can for example be used to create sequences that interact with each other, for example in a PCR reaction. When reverse complementing, the sequence is first reversed, and then each base is exchanged with its complement:\nA -&gt; T\nT -&gt; A\nG -&gt; C\nC -&gt; G\nFor example: ATGTCGC becomes GCGACAT\nExercise:\nGiven the DNA sequence below, write Python code to reverse complement it.\n\n\n\n\n\n\nInput data\n\n\n\nATGGTCGAATGCGGTAACCGTAAATTGCGATCGCGCTAGGCCTAAACGTT"
+  },
+  {
+    "objectID": "short.html#reverse-complement-dna",
+    "href": "short.html#reverse-complement-dna",
+    "title": "Short exercises",
+    "section": "",
+    "text": "Information\n\n\n\nLevel: Easy\nExternal libraries: None\nTime: Short\n\n\nReverse complementing a DNA sequence can for example be used to create sequences that interact with each other, for example in a PCR reaction. When reverse complementing, the sequence is first reversed, and then each base is exchanged with its complement:\nA -&gt; T\nT -&gt; A\nG -&gt; C\nC -&gt; G\nFor example: ATGTCGC becomes GCGACAT\nExercise:\nGiven the DNA sequence below, write Python code to reverse complement it.\n\n\n\n\n\n\nInput data\n\n\n\nATGGTCGAATGCGGTAACCGTAAATTGCGATCGCGCTAGGCCTAAACGTT"
+  },
+  {
+    "objectID": "short.html#translate-rna-to-protein",
+    "href": "short.html#translate-rna-to-protein",
+    "title": "Short exercises",
+    "section": "Translate RNA to protein",
+    "text": "Translate RNA to protein\n\n\n\n\n\n\nInformation\n\n\n\nLevel: Easy\nExternal libraries: None\nTime: Short\n\n\nTranslation is the process of converting RNA sequences into protein sequences. Each group of three RNA bases (codon) corresponds to a specific amino acid. Below is the RNA codon table:\n\n\n\n\n\n\nCodon table\n\n\n\n\n\n\n\n\nUUU: F\nCUU: L\nAUU: I\nGUU: V\n\n\nUUC: F\nCUC: L\nAUC: I\nGUC: V\n\n\nUUA: L\nCUA: L\nAUA: I\nGUA: V\n\n\nUUG: L\nCUG: L\nAUG: M\nGUG: V\n\n\nUCU: S\nCCU: P\nACU: T\nGCU: A\n\n\nUCC: S\nCCC: P\nACC: T\nGCC: A\n\n\nUCA: S\nCCA: P\nACA: T\nGCA: A\n\n\nUCG: S\nCCG: P\nACG: T\nGCG: A\n\n\nUAU: Y\nCAU: H\nAAU: N\nGAU: D\n\n\nUAC: Y\nCAC: H\nAAC: N\nGAC: D\n\n\nUAA: Stop\nCAA: Q\nAAA: K\nGAA: E\n\n\nUAG: Stop\nCAG: Q\nAAG: K\nGAG: E\n\n\nUGU: C\nCGU: R\nAGU: S\nGGU: G\n\n\nUGC: C\nCGC: R\nAGC: S\nGGC: G\n\n\nUGA: Stop\nCGA: R\nAGA: R\nGGA: G\n\n\nUGG: W\nCGG: R\nAGG: R\nGGG: G\n\n\n\n\n\n\nFor example: AUGGCCAUGAAGGGC translates to MAMKG\nExercise: Given the RNA seuence below, write Python code to translate it to an amino acid sequence.\n\n\n\n\n\n\nInput data\n\n\n\nAUGAAACAUUCAUUGGGCAGAAGGCGGGCAGAGAUACCCCCUUCGCUUAGGGGGGCAUAUUUUUGG"
+  },
+  {
+    "objectID": "short.html#find-motifs-in-dna",
+    "href": "short.html#find-motifs-in-dna",
+    "title": "Short exercises",
+    "section": "Find motifs in DNA",
+    "text": "Find motifs in DNA\n\n\n\n\n\n\nInformation\n\n\n\nLevel: Intermediate\nExternal libraries: None\nTime: Short\n\n\nFinding motifs in DNA is a common process in bioinformatics, one example could be to find binding sites for transcription factors.\nFor example: ATCCT is a substring of CGATCCTGTCATCCTTCG starting in two different positions: 2 and 10.\nExercise: Given the DNA sequence and the query string below, in what starting positions is the query string a substring of the DNA sequence?\n\n\n\n\n\n\nInput data\n\n\n\nDNA sequence:\nCTGAGCCTGGACGCCTGAGCTACGCCTTGCGAAACGCGTTCGCCTGGCTAACCGCGCCTA query string:\nGCCT"
+  },
+  {
+    "objectID": "long.html",
+    "href": "long.html",
+    "title": "Long exercises",
+    "section": "",
+    "text": "Information\n\n\n\nLevel: Intermediate\nExternal libraries: None\nTime: Long"
+  },
+  {
+    "objectID": "long.html#find-affected-individuals",
+    "href": "long.html#find-affected-individuals",
+    "title": "Long exercises",
+    "section": "",
+    "text": "Information\n\n\n\nLevel: Intermediate\nExternal libraries: None\nTime: Long"
+  },
+  {
+    "objectID": "long.html#snakemake-workflow",
+    "href": "long.html#snakemake-workflow",
+    "title": "Long exercises",
+    "section": "Snakemake workflow",
+    "text": "Snakemake workflow"
+  },
+  {
+    "objectID": "medium.html",
+    "href": "medium.html",
+    "title": "Medium exercises",
+    "section": "",
+    "text": "Information\n\n\n\nLevel: Intermediate\nExternal libraries: None\nTime: Medium"
+  },
+  {
+    "objectID": "medium.html#find-allele-frequency-in-vcf-file",
+    "href": "medium.html#find-allele-frequency-in-vcf-file",
+    "title": "Medium exercises",
+    "section": "",
+    "text": "Information\n\n\n\nLevel: Intermediate\nExternal libraries: None\nTime: Medium"
+  }
+]
