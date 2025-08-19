@@ -1,0 +1,45 @@
+project:
+  type: website
+
+
+# several branches can be specified here
+branches:
+  - branch: "release-2025"     # change this to the release branch
+    output-dir: "2025"         # change this to year and month of the course instance
+
+website:
+  title: "Python exercises for teaching biologists"
+  sidebar:
+    style: "floating"
+    background: "#F4F6F6"
+    fontsize: 30px
+    search: true
+    contents: 
+      - index.qmd 
+      - short.qmd
+      - text: "Medium Exercises"
+        file: medium.qmd
+        contents:
+          - text: Heterogyzosity rate
+            file: medium_exercises/heterozygosity_rate.qmd
+      - text: "Long Exercises"
+        file: long.qmd
+        contents:
+          - text: Cystic Fibrosis
+            file: long_exercises/CF_exercise.qmd
+          - text: Snakemake workflow
+            file: long_exercises/snakemake_plotting.qmd
+
+
+  navbar:
+    background: "#883B5A"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+execute:
+  freeze: auto
+

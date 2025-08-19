@@ -1,0 +1,64 @@
+---
+title: "Calculate heterozygosity rate"
+author: "Nina Norgren"
+date: today
+---
+
+## Background
+
+In genetics, heterozygosity refers to the presence of different alleles at a specific locus in an individual. At the population level, the heterozygosity rate for a SNP is the proportion of individuals who are heterozygous (e.g., genotype 0/1) at that position.
+
+This measure can provide insight into genetic diversity within a population. Higher heterozygosity means more variation in the population at that SNP. 
+
+## Goal
+
+In this exercise the goal is to calculate the heterozygosity for a given SNP using the data from a VCF file.
+
+
+## Required materials
+
+In the following zip archive you will find a VCF files for 30 different individuals. For more information about the VCF format, see [here](https://samtools.github.io/hts-specs/VCFv4.3.pdf).
+
+| Filename	 |  Description |
+|------------|--------------|
+| file1.vcf  | Sample 1 |
+: {tbl-colwidths="[30,70]"}
+
+## Task
+
+Calculate the heterozygosity for SNP xxxx
+
+<br>
+
+## Instructions
+
+### Create function for calculating heterozygosity
+
+Create a Python function that takes a dictionary with allele frequencies as input, and outputs the heterozygosity rate.
+
+**Example input:**  
+
+`frequencies = {'0/0': 4, '0/1': 3, '1/1': 2}`
+
+**Example output:**  
+0.33
+
+<br>
+
+### Create a function that parses a line in a VCF file
+
+Create a Python function that takes a data line from a VCF file as input (not the header lines), and parses out the allele frequencies for all samples in the file.
+
+**Example input:**  
+`line = 'chr1    346623     .       G       A       1451.38 PASS    AC=13;AF=0.325;AN=40   GT:AD:DP       0/0:15,1:16      0/0:16,0:16 0/1:15,12:28  0/1:15,5:20   0/1:18,5:23    1/1:3,21:24'`
+
+<br>
+
+### Create a function to read a VCF file
+Create a Python function that takes a file path to a VCF file, plus chromosome and location for a SNP, as input, and finds the line with the SNP.
+
+**Example input:**  
+mydata.vcf, chr1, 346623
+
+**Example output:**  
+`line = 'chr1    346623     .       G       A       1451.38 PASS    AC=13;AF=0.325;AN=40   GT:AD:DP       0/0:15,1:16      0/0:16,0:16 0/1:15,12:28  0/1:15,5:20   0/1:18,5:23    1/1:3,21:24'`

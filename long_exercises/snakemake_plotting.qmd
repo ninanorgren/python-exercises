@@ -1,0 +1,85 @@
+---
+title: "Create Snakemake workflow to plot SNP frequencies"
+author: "Nina Norgren"
+date: today
+---
+
+## Background
+
+Snakemake is a workflow manager built in Python that is commonly used in bioinformatics to parallelize and execute jobs. A job can be a shell command or python code. This exercise uses both command line tools and python scripts to build a pipeline for extracting and visualizing SNPs from several separate VCF files.
+
+## Goal
+
+I this exercise you need to extract
+
+## Required materials
+
+In the following zip archive you will find 10 VCF files for 10 different individuals. For more information about the VCF format, see here.
+
+| Filename	 |  Description |
+|------------|--------------|
+| file1.vcf  | Sample 1 |
+: {tbl-colwidths="[30,70]"}
+
+## External tools and libraries
+
+This exercise requires you to install the following:
+
+**External tools:**  
+
+- Snakemake
+- Bcftools
+
+**Python libraries:**  
+
+- Pandas
+- Matplotlib
+
+## Installation
+
+It is assumed that you already have Python and pip installed on your computer.
+
+bcftools  
+
+snakemake  
+
+pip install pandas
+
+pip install matplotlib
+
+
+It is recommended to install the above in a separate environment, but that is beyond the scope of this exercise.
+
+## Task
+
+**For each VCF file:**
+
+- Extract all variants in the genomice region `chr4:100000-200000` using bcftools and write new VCF files for each sample
+
+- Write a small python script that takes all 10 VCF files as command line inputs and outputs a csv file.  
+
+_Command_:
+
+`myscript.py <outputfile> <inputfile1.vcf> <inputfile2.vcf>`
+
+Output file format:
+
+| Samplename  |  rs1234 | rs5678 |
+|-------------|---------|--------| 
+| Sample1     |   0/1   |  1/1   |
+| Sample2     |   0/0   |  0/1   |
+: {tbl-colwidths="[40,30,30]"}
+
+
+
+Use bcftools to extract regions, python script to merge files together. Plot the results (frequencies between cases and controls, violinplot or boxplot, use scipy to calculate p-values and add to plot)
+
+bcftools to extract 5 SNPs from 10 different VCF files
+
+Merge resulting vcf files together using python (could be done with bcftools directly though)... Maybe result should not be a vcf file but a dataframe like object
+
+Write df to file
+
+Read df and calculate frequencies of each SNP, between cases and controls, plus pvalues
+
+Plot the results

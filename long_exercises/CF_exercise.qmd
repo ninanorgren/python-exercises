@@ -1,0 +1,205 @@
+---
+title: "Identify Cystic fibrosis patients"
+author: "Nina Norgren"
+date: today
+---
+
+::: {.callout-note}
+###
+This exercise is taken from the [Introduction to Python - with application to bioinformatics](https://nbis.se/training/python-programming-with-applications-to-bioinformatics) course developed by NBIS
+:::
+
+## Background
+
+For many diseases with known causative mutations, screening methods have been developed to detect whether people have a high risk of becoming sick, even before the onset of the actual disease. Over the last few years, the cost of full genome sequencing has gone down so that, in some cases, it might be cheaper to collect the complete genome sequence of patients with a high risk of carrying variants associated with the disease, rather than using targeted screening procedures.
+
+Cystic fibrosis is a complex disease, where patients often manifest the following symptoms: problems with lung functions, diabetes and infertility. From a genetic point of view, there are several mutations associated with this disease. The gene CFTR (short for Cystic Fibrosis Transmembrane Conductance Regulator) encodes an ion channel protein acting in epithelial cells and is encoded on chromosome 7 of the human genome. CFTR carries several non-synonymous genetic variants, some of which leading to premature stop codons that are known to cause the disease.
+
+## Goal
+
+In this assignment, you have access to the human reference genome (chromosome 7) as well as the full genome annotation. In addition, you have genome sequence data of chromosome 7 from five individuals from a family at risk of carrying mutations related to the disease.
+
+Your task is to write a Python program that
+
+1. extracts a disease-causing transcript from the CFTR gene,
+
+2. translates the gene sequence to its corresponding amino-acid sequence, and
+
+3. based on the reference amino-acid sequence determine whether any of the five given individuals is affected.
+
+## Required material
+
+The main task is divided into several steps. The first step is to download the [data.zip](../resources/CF_exercise/data.zip) folder, which includes: 
+
+| Filename	 |  Description |
+|------------|--------------|
+| Homo_sapiens.GRCh38.93.gtf | Human reference annotation file (GTF format) |
+| Homo_sapiens.GRCh38.dna_sm.chromosome.7.fa | Human reference DNA sequence for chromosome 7 (fasta format) |
+| Patient1.fa | DNA sequence data for Patient 1 (fasta format) |
+| Patient2.fa | DNA sequence data for Patient 2 (fasta format) | 
+| Patient3.fa | DNA sequence data for Patient 3 (fasta format) |
+| Patient4.fa | DNA sequence data for Patient 4 (fasta format) |
+| Patient5.fa | DNA sequence data for Patient 5 (fasta format) |
+| gtf-format.md | Markdown file explaining the GTF format |
+: {tbl-colwidths="[30,70]"}
+
+
+If you are not familiar with the file formats, read up online on how the files are structured. For example, [here](https://www.ensembl.org/info/website/upload/gff.html) you can find a short description of the different (tab-delimited) fields of a GTF file and [here](https://blast.ncbi.nlm.nih.gov/doc/blast-topics/), a general description about the fasta files.
+
+Some of the tasks involve outputting long sequences. To make sure they are correct, use the utils.check_answers package (from the [utils folder](../resources/CF_exercise/utils.zip). You can import it this way:
+
+```{}
+from utils import check_answers
+```
+
+More detailed instructions are given with each task that uses the package.
+
+
+## Warmup
+
+We recommend creating a folder in your file system, called Project. In this folder you can add all the required files, such as the reference and annotation files, as well as the downloaded folder from the previous step.
+
+**1.** Unzip the reference DNA and annotation files (fasta and GTF respectively), so that you can check their contents. That should be possible using 7zip in Windows and double clicking the files in MacOS and Linux.
+
+**2.** Now that the files are decompressed, you can check their content using the `head` command on your terminal. You can google the `head` command for details or type.
+
+```
+head --help
+```
+to see the usage instructions. You can check the first few lines of each file using thee `head` command.
+
+For Windows you can instead use the `more` command.
+
+**3.** What is the length of chromosome 7 on the reference sequence?
+
+::: {.callout-tip collapse="true"}
+### Tip
+- Open the reference fasta file and read it line by line.
+- In a loop, ignore the first line and get the length of each following line.
+- Don’t forget to remove the trailing newline character from each line.
+- Sum up all the lengths you found.
+:::
+
+::: {.callout-tip collapse="true"}
+### Answer
+Chromosome 7 has 159,345,973 base pairs.
+:::
+
+**4.** How many genes are annotated in the GTF file?
+
+::: {.callout-tip collapse="true"}
+### Tip
+- You need to understand the structure of a GTF (gene transfer format) file for this project. 
+- Take your time and read up on the file format if you are not sure how to solve this task.
+- To get the number of genes, open the GTF file and read it line by line.
+- In a loop, count all features of type `gene`.
+:::
+
+::: {.callout-tip collapse="true"}
+### Answer
+There are 58,395 genes annotated in the GTF file.
+:::
+
+## Architect a method
+
+All following tasks are related to the `CFTR` gene.
+
+In the annotation file (the GTF file), the CFTR gene has the id `ENSG00000001626` on chromosome 7.
+
+**1.** How many transcripts can the CFTR gene generate?
+
+::: {.callout-tip collapse="true"}
+### Tip
+- Again, think about the structure of the GTF file.
+- Open the GTF file.
+- In a loop, count all transcript features for the gene.
+:::
+
+::: {.callout-tip collapse="true"}
+### Answer
+The CFTR gene can produce 11 different transcripts.
+:::
+
+**2.** Which of these transcripts is the longest transcript in nucleotides?
+
+::: {.callout-tip collapse="true"}
+### Tip
+- Open the GTF file.
+- Fetch the start and stop positions for each transcript of the CFTR gene to calculate its length.
+- Keep in mind that sequence numbering starts at 1 in the GTF file format.
+:::
+
+::: {.callout-tip collapse="true"}
+### Answer
+The transcript with the id `ENST00000003084` is the longest of 11 transcripts and spans 188,703 bases.
+:::
+
+**3.** Fetch the DNA sequence for that transcript.
+
+::: {.callout-tip collapse="true"}
+### Tip
+- Open the reference fasta file.
+- In a loop, ignore the first line and append each line to a list, removing the trailing newline character.
+- Outside the loop, use the `join` function to concatenate the lines from the list to get the reference sequence. Avoid concatenation inside the loop, as it is slow and wastes memory.
+- Extract the start and stop positions of the longest transcript to fetch its DNA sequence from the reference sequence, but think about where the index starts from.
+:::
+
+::: {.callout-tip collapse="true"}
+### Answer
+Write your results to a file and compare it to the correct result using `check_answers.ex3(<yourfilename>)`.
+
+The entire sequence can also be found [here](../resources/CF_exercise/transcript.ncbi.fasta).
+:::
+
+**4.** Fetch the DNA sequences of all exons for that transcript, spliced together to one sequence.
+
+::: {.callout-tip collapse="true"}
+### Tip
+- First, you need to save the start and stop positions of all exons of the longest transcript.
+- Then you can use a similar loop to the one you used in task 3 to extract the DNA sequence of each exon.
+- Finally, you need to concatenate the DNA sequences of all exons.
+:::
+
+::: {.callout-tip collapse="true"}
+### Answer
+Write your results to a file and compare it to the correct result using `check_answers.ex4(<yourfilename>)`.
+
+The correct sequence can also be found [here](../resources/CF_exercise/mrna.ncbi.fasta).
+:::
+
+
+**5.** What are the start positions and sequences of the start_codon and stop_codon for that transcript?
+
+::: {.callout-tip collapse="true"}
+### Tip
+- Find the start_codon and stop_codon features of the longest transcript in the GTF file, including the start positions of the start- and stop-codon.
+- Check that the start_codon has the sequence ATG, and that the stop_codon corresponds to a proper stop codon.
+- Make your program print a warning message in case the transcript does not begin with a start-codon and end with a stop-codon.
+:::
+
+::: {.callout-tip collapse="true"}
+### Answer
+The start codon has the sequence ATG and starts at position 117,480,095.
+
+The stop codon has the sequence TAG and starts at position 117,667,106.
+:::
+
+**6.** Translate the above sequence of all exons into amino acids, using an implementation of the translation table from the `utils.rna` package (included in the utils folder).
+
+::: {.callout-tip collapse="true"}
+### Tip
+Translate the DNA sequence of the concatenated exons into amino acids from the start codon position of the transcript on.
+:::
+
+::: {.callout-tip collapse="true"}
+### Answer
+Write your results to a file and compare it to the correct result using `check_answers.ex6(yourfilename)`.
+
+The correct sequence can also be found [here](../resources/CF_exercise/protein.ncbi.fasta).
+:::
+
+## Find the patients at risk
+
+We are reaching the goal for this assignment!
+
+A mutation in the transcript `ENST00000003084` causes a premature stop codon to be introduced into the amino acid sequence. This creates a truncated protein, causing cystic fibrosis. Use the python code you have written to solve the tasks above and extend it to compare the reference genome sequence of chromosome 7 to the sequences of the 5 patients in fasta format from the `data.zip` folder to determine which of them are carrying a mutation in the CFTR gene that causes a truncated protein.

@@ -1,0 +1,13 @@
+---
+title: "Overview"
+author: "Nina Norgren"
+date: today
+---
+
+## Content description
+
+This site contains different Python exercises that can be incorporated in teaching Python to biologists. The exercises have different difficulty levels and approaches.
+
+## Target audience
+
+These exercises are intended for trainers that teach Python, to freely incorporate in their own teachings.
