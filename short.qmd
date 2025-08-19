@@ -148,3 +148,65 @@ query string:
 GCCT
 
 :::
+
+<br> 
+
+## Amino acid frequency
+
+::: {.callout-note}
+### Information
+
+**Level:** Easy  
+**External libraries:** None  
+**Time:** Short
+
+:::
+
+There are 20 common amino acids that are the building blocks of all proteins in our body. On of those proteins is Transthyretin (TTR), in which certain mutations causes Hereditary transthyretin amyloidosis, also known in Sweden as "Skellefteåsjukan".
+
+**Exercise:**  
+Given the protein sequence of TTR below, write Python code to count the frequencies of all the different amino acids in the sequence.
+
+::: {.callout}
+### Input data 
+
+Protein sequence:  
+MASHRLLLLCLAGLVFVSEAGPTGTGESKCPLMVKVLDAVRGSPAINVAVHVFRKAADDT  
+WEPFASGKTSESGELHGLTTEEEFVEGIYKVEIDTKSYWKALGISPFHEHAEVVFTANDS  
+GPRRYTIAALLSPYSYSTTAVVTNPKE
+
+:::
+
+<br>
+
+## Filter low expressed genes
+
+::: {.callout-note}
+### Information
+
+**Level:** Easy  
+**External libraries:** None  
+**Time:** Short
+
+:::
+
+RNA-seq data often contains genes with almost no reads. These should be filtered out in the pre-processing.
+
+**Exercise:**  
+Write a function that removes genes where the total number of reads summed over all samples is 30 or less, and returns a cleaned dictionary.
+
+::: {.callout}
+### Input data 
+
+Each number in the list represent one sample:
+
+counts = {  
+    "GeneA": [5, 8, 2],  
+    "GeneB": [300, 250, 400],  
+    "GeneC": [0, 1, 0],  
+    "GeneD": [40, 35, 50],  
+}
+
+:::
+
+<br>
