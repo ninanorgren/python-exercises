@@ -1,0 +1,30 @@
+---
+title: "Calculate allele frequency"
+author: "Nina Norgren"
+date: today
+---
+
+## Background
+
+The variant [rs12913832](https://www.snpedia.com/index.php/Rs12913832) is strongly associated with eye color. Persons with the AA or AG genotypes most likely have brown eyes, while persons with the GG genotypes most likely have blue eyes.   
+
+
+## Goal
+
+In this exercise the goal is to calculate the allele frequency of the rs12913832 variant from a VCF file, and plot the frequency of the different genotypes.
+
+## Required materials
+
+[Download a subset](https://nextcloud.dc.scilifelab.se/s/NbbymL3w8BPS2x7/download) of the 1000Genomes data, container 40 samples with variants on chromosome 15. For more information about the VCF format, see [here](https://samtools.github.io/hts-specs/VCFv4.3.pdf).
+
+## Instructions
+
+The rs12913832 SNP is located on chromosome 15, position 28365618 (genome build hg19). The VCF file you have downloaded contains a subset of variants on chromosome 15, that have been called using hg19.
+
+### Get the allele counts
+
+Read the VCF file (make sure to read the VCF specifications to understand where the information you want is located), and extract the sample counts for each genotype; AA, AG, GG. How many persons are likely blue-eyed?
+
+### Plot the frequencies
+
+Plot a bar plot with the frequencies of each genotype.

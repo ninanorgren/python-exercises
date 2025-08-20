@@ -10,10 +10,11 @@ date: today
 ### Information
 
 **Level:** Intermediate  
-**External libraries:** None  
+**External libraries:** Matplotlib  
 **Time:** Medium
 :::
 
+Find the exercise [here](medium_exercises/allele_frequency.qmd)
 
 ## Calculate heterozygosity rate
 

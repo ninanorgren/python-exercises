@@ -20,6 +20,8 @@ website:
       - text: "Medium Exercises"
         file: medium.qmd
         contents:
+          - text: Allele frequency
+            file: medium_exercises/allele_frequency.qmd
           - text: Heterogyzosity rate
             file: medium_exercises/heterozygosity_rate.qmd
       - text: "Long Exercises"
