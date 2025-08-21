@@ -210,3 +210,30 @@ counts = {
 :::
 
 <br>
+
+
+## Extract exons from fasta file
+
+::: {.callout-note}
+### Information
+
+**Level:** Medium  
+**External libraries:** None  
+**Time:** Short
+
+:::
+
+Genes contains both exons and introns, with the exons being the part that is later translated into proteins. The FASTA file below contains the sequence for the HBB gene, with both exons and introns in it. In this case exons are represented by uppercase letters, and introns lowercase. Mutations in the HBB gene can cause sickle cell anemia. 
+
+**Exercise:**  
+Write pyton code that reads the fasta file and outputs the sequence with only exons in.
+
+::: {.callout}
+### Input data 
+
+Download the FASTA file here: [HBB.fasta](https://nextcloud.dc.scilifelab.se/s/3stFFgHywiSqWp2/download)
+
+
+:::
+
+<br>
