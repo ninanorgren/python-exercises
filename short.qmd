@@ -34,6 +34,32 @@ ATGGTCGAATGCGGTAACCGTAAATTGCGATCGCGCTAGGCCTAAACGTT
 
 :::
 
+::: {.callout collapse="true"}
+### Answer
+```{python}
+#| echo: false
+#| output: true
+
+data = 'ATGGTCGAATGCGGTAACCGTAAATTGCGATCGCGCTAGGCCTAAACGTT'
+
+code_dictionary = {'A': 'T',
+                   'T': 'A',
+                   'G': 'C',
+                   'C': 'G'} 
+
+reverse_sequence = data[::-1]
+reverse_complement_list = []
+
+for base in reverse_sequence:
+    complement = code_dictionary[base]
+    reverse_complement_list.append(complement)
+
+reverse_complement_sequence = ''.join(reverse_complement_list)
+reverse_complement_sequence
+
+```
+:::
+
 <br>
 
 ## Calculate GC content
@@ -47,11 +73,11 @@ ATGGTCGAATGCGGTAACCGTAAATTGCGATCGCGCTAGGCCTAAACGTT
 
 :::
 
-Analysis of ancient DNA is getting more and more common, with better sequencing technologies available. It's common for ancient DNA sequences to have higher GC-content due to deamination of the A- and T-bases over time.
+Analysis of ancient DNA is getting more and more common, with better sequencing technologies available. It's common for ancient DNA sequences to have higher GC-content due to deamination of the A and T bases over time.
 
 Someone has mixed up the DNA samples in the lab, and now they don't know which samples are ancient DNA and which are samples from modern time. Help identify the ancient DNA sequences by calculating the GC-content in each sequence, the higher number the more likely it being ancient DNA.
 
-GC content is defined as the fraction of C- or G-bases in a sequence.
+GC content is defined as the fraction of C or G bases in a sequence.
 
 For example: ATGTACCG has a GC-content of 0.5
 
@@ -66,6 +92,33 @@ Sequence A: ACGGCTGCCGGTGGCGGCCCGCGAATGCTTGCGC
 Sequence B: TTATGTCGCTTAGGATTGCTCGTCGCGTCGGAGA  
 Sequence C: TTAGACAGCACGCTTGTGCGTAACGGACTCGCTA  
 Sequence D: AAGCGGCTGTGCCGCGTGGTGCGATGCCGTCGCC  
+
+:::
+
+::: {.callout collapse="true"}
+### Answer
+```{python}
+#| echo: false
+#| output: true
+seq_a = 'ACGGCTGCCGGTGGCGGCCCGCGAATGCTTGCGC'
+seq_b = 'TTATGTCGCTTAGGATTGCTCGTCGCGTCGGAGA'
+seq_c = 'TTAGACAGCACGCTTGTGCGTAACGGACTCGCTA'
+seq_d = 'AAGCGGCTGTGCCGCGTGGTGCGATGCCGTCGCC'
+
+seq_dictionary = {'Sequence A': seq_a,
+                  'Sequence B': seq_b,
+                  'Sequence C': seq_c,
+                  'Sequence D': seq_d}
+
+for sequence in seq_dictionary:
+    gc_count = 0
+    for base in seq_dictionary[sequence]:
+        if base == 'G' or base == 'C':
+            gc_count += 1
+    gc_content = gc_count / len(seq_dictionary[sequence])
+    print(f"{sequence} has GC content: {gc_content}")
+```
+Sequences A and D are more likely to be ancient DNA (However in reality the sequences are too short to draw any conclusions)
 
 :::
 
@@ -121,6 +174,45 @@ AUGAAACAUUCAUUGGGCAGAAGGCGGGCAGAGAUACCCCCUUCGCUUAGGGGGGCAUAUUUUUGG
 
 :::
 
+::: {.callout collapse="true"}
+### Answer
+```{python}
+#| echo: false
+#| output: true
+data = 'AUGAAACAUUCAUUGGGCAGAAGGCGGGCAGAGAUACCCCCUUCGCUUAGGGGGGCAUAUUUUUGG'
+
+codon_table = {'UUU': 'F', 'UUC': 'F', 'UUA': 'L', 'UUG': 'L',
+               'UCU': 'S', 'UCC': 'S', 'UCA': 'S', 'UCG': 'S',
+               'UAU': 'Y', 'UAC': 'Y', 'UAA': 'Stop', 'UAG': 'Stop',
+               'UGU': 'C', 'UGC': 'C', 'UGA': 'Stop', 'UGG': 'W',
+               'CUU': 'L', 'CUC': 'L', 'CUA': 'L', 'CUG': 'L',
+               'CCU': 'P', 'CCC': 'P', 'CCA': 'P', 'CCG': 'P',
+               'CAU': 'H', 'CAC': 'H', 'CAA': 'Q', 'CAG': 'Q',
+               'CGU': 'R', 'CGC': 'R', 'CGA': 'R', 'CGG': 'R',
+               'AUU': 'I', 'AUC': 'I', 'AUA': 'I', 'AUG': 'M',
+               'ACU': 'T', 'ACC': 'T', 'ACA': 'T', 'ACG': 'T',
+               'AAU': 'N', 'AAC': 'N', 'AAA': 'K', 'AAG': 'K',
+               'AGU': 'S', 'AGC': 'S', 'AGA': 'R', 'AGG': 'R',
+               'GUU': 'V', 'GUC': 'V', 'GUA': 'V', 'GUG': 'V',
+               'GCU': 'A', 'GCC': 'A', 'GCA': 'A', 'GCG': 'A',
+               'GAU': 'D', 'GAC': 'D', 'GAA': 'E', 'GAG': 'E',
+               'GGU': 'G', 'GGC': 'G', 'GGA': 'G', 'GGG': 'G'}
+
+ix = 0
+protein_sequence_list = []
+
+while ix < len(data):
+    codon = data[ix:ix+3]
+    aminoacid = codon_table[codon]
+    protein_sequence_list.append(aminoacid)
+    ix += 3
+    
+protein_sequence = ''.join(protein_sequence_list)
+protein_sequence
+```
+
+:::
+
 <br>
 
 ## Find motifs in DNA
@@ -149,6 +241,27 @@ GCCT
 
 :::
 
+::: {.callout collapse="true"}
+### Answer
+```{python}
+#| echo: false
+#| output: true
+data = 'CTGAGCCTGGACGCCTGAGCTACGCCTTGCGAAACGCGTTCGCCTGGCTAACCGCGCCTA'
+query_string = 'GCCT'
+
+ix = 0
+query_position_result = []
+
+while ix < len(data):
+    if data[ix:].startswith(query_string):
+        query_position_result.append(ix)
+    ix += 1
+    
+query_position_result
+```
+
+:::
+
 <br> 
 
 ## Amino acid frequency
@@ -174,6 +287,25 @@ Protein sequence:
 MASHRLLLLCLAGLVFVSEAGPTGTGESKCPLMVKVLDAVRGSPAINVAVHVFRKAADDT  
 WEPFASGKTSESGELHGLTTEEEFVEGIYKVEIDTKSYWKALGISPFHEHAEVVFTANDS  
 GPRRYTIAALLSPYSYSTTAVVTNPKE
+
+:::
+
+::: {.callout collapse="true"}
+### Answer
+```{python}
+#| echo: false
+#| output: true
+data = "MASHRLLLLCLAGLVFVSEAGPTGTGESKCPLMVKVLDAVRGSPAINVAVHVFRKAADDTWEPFASGKTSESGELHGLTTEEEFVEGIYKVEIDTKSYWKALGISPFHEHAEVVFTANDSGPRRYTIAALLSPYSYSTTAVVTNPKE"
+
+frequencies = {}
+
+for aa in data:
+    if aa not in frequencies:
+        frequencies[aa] = 0
+    frequencies[aa] += 1
+    
+print(frequencies)
+```
 
 :::
 
@@ -209,6 +341,32 @@ counts = {
 
 :::
 
+::: {.callout collapse="true"}
+### Answer
+```{python}
+#| echo: false
+#| output: true
+counts = {
+    "GeneA": [5, 8, 2],
+    "GeneB": [300, 250, 400],
+    "GeneC": [0, 1, 0],
+    "GeneD": [40, 35, 50],
+}
+
+def filter_low_expressed_genes(gene_counts, limit):
+    result = {}
+
+    for gene in gene_counts:
+        if sum(gene_counts[gene]) > limit:
+            result[gene] = gene_counts[gene]
+    return result
+
+result = filter_low_expressed_genes(counts, 30)
+result
+```
+
+:::
+
 <br>
 
 
@@ -217,7 +375,7 @@ counts = {
 ::: {.callout-note}
 ### Information
 
-**Level:** Medium  
+**Level:** Easy  
 **External libraries:** None  
 **Time:** Short
 
@@ -233,6 +391,27 @@ Write pyton code that reads the fasta file and outputs the sequence with only ex
 
 Download the FASTA file here: [HBB.fasta](https://nextcloud.dc.scilifelab.se/s/3stFFgHywiSqWp2/download)
 
+
+:::
+
+::: {.callout collapse="true"}
+### Answer
+```{python}
+#| echo: false
+#| output: true
+fasta = open("solutions/supporting_files/HBB.fasta")
+
+transcript = []
+
+for line in fasta:
+    if line.startswith(">"):
+        continue
+    for base in line:
+        if base.isupper():
+            transcript.append(base)
+fasta.close()
+''.join(transcript)
+```
 
 :::
 
