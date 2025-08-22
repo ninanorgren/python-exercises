@@ -29,7 +29,7 @@ Your task is to write a Python program that
 
 ## Required material
 
-The main task is divided into several steps. The first step is to download the [data.zip](../resources/CF_exercise/data.zip) folder, which includes: 
+The main task is divided into several steps. The first step is to download the [data.zip](https://nextcloud.dc.scilifelab.se/s/X9oAec88zB8HBYE/download) folder, which includes: 
 
 | Filename	 |  Description |
 |------------|--------------|
