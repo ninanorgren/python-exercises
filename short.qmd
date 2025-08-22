@@ -34,7 +34,7 @@ ATGGTCGAATGCGGTAACCGTAAATTGCGATCGCGCTAGGCCTAAACGTT
 
 :::
 
-::: {.callout collapse="true"}
+::: {.callout-tip collapse="true"}
 ### Answer
 ```{python}
 #| echo: false
@@ -95,7 +95,7 @@ Sequence D: AAGCGGCTGTGCCGCGTGGTGCGATGCCGTCGCC
 
 :::
 
-::: {.callout collapse="true"}
+::: {.callout-tip collapse="true"}
 ### Answer
 ```{python}
 #| echo: false
@@ -174,7 +174,7 @@ AUGAAACAUUCAUUGGGCAGAAGGCGGGCAGAGAUACCCCCUUCGCUUAGGGGGGCAUAUUUUUGG
 
 :::
 
-::: {.callout collapse="true"}
+::: {.callout-tip collapse="true"}
 ### Answer
 ```{python}
 #| echo: false
@@ -241,7 +241,7 @@ GCCT
 
 :::
 
-::: {.callout collapse="true"}
+::: {.callout-tip collapse="true"}
 ### Answer
 ```{python}
 #| echo: false
@@ -290,7 +290,7 @@ GPRRYTIAALLSPYSYSTTAVVTNPKE
 
 :::
 
-::: {.callout collapse="true"}
+::: {.callout-tip collapse="true"}
 ### Answer
 ```{python}
 #| echo: false
@@ -341,7 +341,7 @@ counts = {
 
 :::
 
-::: {.callout collapse="true"}
+::: {.callout-tip collapse="true"}
 ### Answer
 ```{python}
 #| echo: false
@@ -394,7 +394,7 @@ Download the FASTA file here: [HBB.fasta](https://nextcloud.dc.scilifelab.se/s/3
 
 :::
 
-::: {.callout collapse="true"}
+::: {.callout-tip collapse="true"}
 ### Answer
 ```{python}
 #| echo: false
@@ -412,7 +412,6 @@ for line in fasta:
 fasta.close()
 ''.join(transcript)
 ```
-
 :::
 
 <br>

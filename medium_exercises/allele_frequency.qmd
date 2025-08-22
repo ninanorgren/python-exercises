@@ -30,7 +30,7 @@ The rs12913832 SNP is located on chromosome 15, position 28365618 (genome build 
 
 How many persons are likely blue-eyed?
 
-::: {.callout collapse="true"}
+::: {.callout-tip collapse="true"}
 ### Answer
 ```{python}
 #| echo: false
@@ -87,7 +87,7 @@ print(genotypes)
 
 Plot a bar plot with the frequencies of each genotype.
 
-::: {.callout collapse="true"}
+::: {.callout-tip collapse="true"}
 ### Answer
 ```{python}
 #| echo: false
@@ -99,6 +99,5 @@ frequencies = {key: value/sum(genotypes.values()) for key, value in genotypes.it
 plt.bar(frequencies.keys(), frequencies.values())
 plt.show()
 ```
-
 
 :::
