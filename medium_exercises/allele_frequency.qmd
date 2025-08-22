@@ -23,8 +23,82 @@ The rs12913832 SNP is located on chromosome 15, position 28365618 (genome build 
 
 ### Get the allele counts
 
-Read the VCF file (make sure to read the VCF specifications to understand where the information you want is located), and extract the sample counts for each genotype; AA, AG, GG. How many persons are likely blue-eyed?
+- Read the VCF file specifications to make sure you understand where the information you want is located
+- Create a function that reads the VCF file and returns the line with the correct SNP 
+- Create another function that parses that line and returns the counts for each genotype (AA, AG, GG) in a dictionary
+- Tip! You can get the allele information from the VCF file
+
+How many persons are likely blue-eyed?
+
+::: {.callout collapse="true"}
+### Answer
+```{python}
+#| echo: false
+#| output: true
+import requests, io
+file_name = "https://nextcloud.dc.scilifelab.se/s/NbbymL3w8BPS2x7/download"
+variant_position = '28365618'
+
+
+def extract_variant_line(file_name, rs_position):
+    r = requests.get(file_name)
+    fh = io.StringIO(r.text)
+    for line in fh:
+        if line.startswith('#'):
+            continue
+        cols = line.strip().split()
+        if cols[1] == rs_position:
+            return line
+        
+def extract_genotypes(line):
+    wt  = 0
+    het = 0
+    hom = 0
+
+    cols = line.strip().split()
+    zero = cols[3]
+    one  = cols[4]
+    for genotype in cols[9:]:
+        if genotype == '0|0':
+            wt += 1
+        elif genotype == '0|1' or genotype == '1|0':
+            het += 1
+        elif genotype == '1|1':
+            hom += 1
+        else:
+            print('found not matching', genotype)
+    genotypes = { f"{zero}{zero}": wt
+                , f"{zero}{one}": het
+                , f"{one}{one}": hom }
+    return genotypes
+
+
+line = extract_variant_line(file_name, variant_position)
+genotypes = extract_genotypes(line)
+    
+print(genotypes)
+```
+
+3 persons are most likely blue eyed. 
+
+:::
 
 ### Plot the frequencies
 
 Plot a bar plot with the frequencies of each genotype.
+
+::: {.callout collapse="true"}
+### Answer
+```{python}
+#| echo: false
+#| output: true
+from matplotlib import pyplot as plt
+
+frequencies = {key: value/sum(genotypes.values()) for key, value in genotypes.items()}
+
+plt.bar(frequencies.keys(), frequencies.values())
+plt.show()
+```
+
+
+:::
