@@ -24,13 +24,13 @@ website:
             file: medium_exercises/allele_frequency.qmd
           - text: Heterogyzosity rate
             file: medium_exercises/heterozygosity_rate.qmd
+          - text: Calculate chi^2^ p value
+            file: medium_exercises/calculate_pvalue.qmd
       - text: "Long Exercises"
         file: long.qmd
         contents:
           - text: Cystic Fibrosis
             file: long_exercises/CF_exercise.qmd
-          - text: Snakemake workflow
-            file: long_exercises/snakemake_plotting.qmd
 
 
   navbar:

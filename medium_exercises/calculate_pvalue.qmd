@@ -1,0 +1,238 @@
+---
+title: "Calculate chi-square value"
+author: "Nina Norgren"
+date: today
+---
+
+## Background
+
+For a biallelic SNP, you can test if the allele frequencies differ between cases and controls using a 2×2 contingency table and a chi-square (χ²) test with 1 degree of freedom. You can read more about chi-square tests [here](https://www.simplypsychology.org/chi-square.html).
+
+|              | Ref allele | Alt allele |
+| ------------ | ---------- | ---------- |
+| **Cases**    | a          | b          |
+| **Controls** | c          | d          |
+
+The chi-square for the table above, with one degree of freedom:
+$$
+\chi^2 = \sum \frac{(O - E)^2}{E}
+$$
+
+$O$: Observed values  
+$E$: Expected values
+
+The p value can then be looked up from a table using the chi-square value.
+
+## Goal
+
+Calculate the chi-square p value using lists of case and control with genotypes.
+
+Note! The following instructions are simplified and only works for a 2x2 contingency table.
+
+## Required materials
+
+2 list with the genotypes for cases and controls:
+
+```{python}
+cases = ["0/1","1/1","0/1","0/1","0/0","1/1","1/1","0/0","1/1","1/1"]
+
+controls = ["0/0","1/1","0/1","0/0","0/0","0/0","0/1","0/1","0/0","0/0"]
+```
+
+<br>
+
+## Instructions
+
+### Function for transforming genotypes
+
+Create a Python function that takes a list as input, and outputs the number of ref and alt alleles.
+
+**Example input:**  
+
+```
+cases = ["0/1","1/1","0/1","0/1","0/0","1/1","1/1","0/0","1/1","1/1"]
+controls = ["0/0","1/1","0/1","0/0","0/0","0/0","0/1","0/1","0/0","0/0"]
+
+count_alleles(cases)
+
+```
+::: {.callout-tip collapse="true"}
+### Example output
+```{python}
+#| echo: false
+#| output: true
+cases = ["0/1","1/1","0/1","0/1","0/0","1/1","1/1","0/0","1/1","1/1"]
+
+def count_alleles(genotype_list):
+    ref = 0
+    alt = 0
+    for genotype in genotype_list:
+        alleles = genotype.strip().split('/')
+        for allele in alleles:
+            if allele == '0':
+                ref += 1
+            elif allele == '1':
+                alt += 1
+            else:
+                print('SNP not biallelic')
+
+    return ref, alt
+    
+ref, alt = count_alleles(cases)
+print(ref, alt)
+```
+:::
+
+Run this function for both the cases and controls to get all **observed** counts:
+
+|              | Ref allele | Alt allele |
+| ------------ | ---------- | ---------- |
+| **Cases**    | 7          | 13         |
+| **Controls** | 15         | 5          |
+
+<br>
+
+### Function for calculating expected frequencies
+Create a Python function that takes the 4 observed values and outputs 4 expected values. The expected value is calculated by the **sum of the row x the sum of the column / total counts in the table**.
+
+
+**Example input:**  
+
+```
+obs_case_ref = 7
+obs_case_alt = 13
+obs_control_ref = 15
+obs_control_alt = 5
+
+calculate_expected_values(obs_case_ref, obs_case_alt, cobs_ontrol_ref, obs_control_alt)
+
+```
+::: {.callout-tip collapse="true"}
+### Example output
+```{python}
+#| echo: false
+#| output: true
+obs_case_ref = 7
+obs_case_alt = 13
+obs_control_ref = 15
+obs_control_alt = 5
+
+def calculate_expected_values(obs_case_ref, obs_case_alt, obs_control_ref, obs_control_alt):
+    total = obs_case_ref + obs_case_alt + obs_control_ref + obs_control_alt
+    total_row1 = obs_case_ref + obs_case_alt 
+    total_row2 = obs_control_ref + obs_control_alt
+    total_col1 = obs_case_ref + obs_control_ref
+    total_col2 = obs_case_alt + obs_control_alt 
+
+    exp_case_ref = total_row1 * total_col1 / total
+    exp_case_alt = total_row1 * total_col2 / total 
+    exp_control_ref = total_row2 * total_col1 / total
+    exp_control_alt = total_row2 * total_col2 / total
+    
+    return exp_case_ref, exp_case_alt, exp_control_ref, exp_control_alt
+    
+exp_case_ref, exp_case_alt, exp_control_ref, exp_control_alt = calculate_expected_values(obs_case_ref, obs_case_alt, obs_control_ref, obs_control_alt)
+print(exp_case_ref, exp_case_alt, exp_control_ref, exp_control_alt)
+```
+:::
+
+You should get the following **expected** counts:
+
+|              | Ref allele | Alt allele |
+| ------------ | ---------- | ---------- |
+| **Cases**    | 11         | 9          |
+| **Controls** | 11         | 9          |
+
+<br>
+
+
+### Function for calculating chi-square value
+Create a Python function that takes as input a list of tuples with the observed, expected pairs, and outputs a chi-square value.
+
+**Example input:**  
+
+```
+counts = [(obs_case_ref, exp_case_ref), \
+          (obs_case_alt, exp_case_alt), \
+          (obs_control_ref, exp_control_ref), \
+          (obs_control_alt, exp_control_alt)]
+
+calculate_chisquare_value(counts)
+
+```
+::: {.callout-tip collapse="true"}
+### Example output
+```{python}
+#| echo: false
+#| output: true
+counts = [(obs_case_ref, exp_case_ref), \
+          (obs_case_alt, exp_case_alt), \
+          (obs_control_ref, exp_control_ref), \
+          (obs_control_alt, exp_control_alt)]
+
+def calculate_chisquare_value(counts):
+    chi = 0
+    for O, E in counts:
+        value = (O - E) * (O - E) / E
+        chi+= value
+    return chi
+
+chi = calculate_chisquare_value(counts)
+print('chi-square is: ', chi)
+```
+:::
+
+<br>
+
+### Calculate the p value
+You can either look up the p value borders in a lookup table, or use the math library in python with:
+
+```{python}
+from scipy.stats import chi2
+p_value = chi2.sf(chi, 1)
+p_value
+```
+
+<br>
+
+### Put it all together
+Put all the functions together in one function that takes 2 lists as input (case and controls).
+
+**Example input:**  
+
+```
+cases = ["0/1","1/1","0/1","0/1","0/0","1/1","1/1","0/0","1/1","1/1"]
+
+controls = ["0/0","1/1","0/1","0/0","0/0","0/0","0/1","0/1","0/0","0/0"]
+
+calculate_p_value(cases, controls)
+```
+
+::: {.callout-tip collapse="true"}
+### Final output
+```{python}
+#| echo: false
+#| output: true
+cases = ["0/1","1/1","0/1","0/1","0/0","1/1","1/1","0/0","1/1","1/1"]
+controls = ["0/0","1/1","0/1","0/0","0/0","0/0","0/1","0/1","0/0","0/0"]
+
+def calculate_p_value(cases, controls):
+    # get allele counts
+    obs_case_ref, obs_case_alt = count_alleles(cases)
+    obs_control_ref, obs_control_alt = count_alleles(controls)
+    # get expected values
+    exp_case_ref, exp_case_alt, exp_control_ref, exp_control_alt = calculate_expected_values(obs_case_ref, obs_case_alt, obs_control_ref, obs_control_alt)
+    # get chi square value
+    counts = [(obs_case_ref, exp_case_ref), \
+              (obs_case_alt, exp_case_alt), \
+              (obs_control_ref, exp_control_ref), \
+              (obs_control_alt, exp_control_alt)]
+    chi = calculate_chisquare_value(counts)
+    # get p values
+    p = chi2.sf(chi, 1)
+    return p
+
+p = calculate_p_value(cases, controls)
+print('p value is: ', p)
+```
+:::

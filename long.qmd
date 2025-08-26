@@ -16,16 +16,3 @@ date: today
 
 Parse and translate DNA sequences to find patients with Cystic fibrosis. Can also be done with Biopython. Find the exercise [here](long_exercises/CF_exercise.qmd)
 
-
-
-## Snakemake workflow
-
-::: {.callout-note}
-### Information
-
-**Level:** Advanced  
-**External libraries:** Snakemake, bcftools, scipy, pandas, matplotlib  
-**Time:** Long
-:::
-
-Use Snakemake to build a workflow for getting VCFs, extracting data, calculate SNP frequencies and plot results. Find the exercise [here](long_exercises/snakemake_plotting.qmd)

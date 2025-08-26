@@ -27,3 +27,18 @@ Find the exercise [here](medium_exercises/allele_frequency.qmd)
 :::
 
 Find the exercise [here](medium_exercises/heterozygosity_rate.qmd)
+
+
+## Calculate chi square values for case control
+
+::: {.callout-note}
+### Information
+
+**Level:** Intermediate/Advanced  
+**External libraries:** scipy  
+**Time:** Medium
+:::
+
+Find the exercise [here](medium_exercises/calculate_pvalue.qmd)
+
+
